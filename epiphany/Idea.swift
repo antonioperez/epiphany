@@ -14,7 +14,7 @@ class Idea {
     private var _userId: Int
     private var _title: String
     private var _isSharing: Bool
-    private var _ideaHeaders : [IdeaSection]
+    private var _sections : [IdeaSection]
     
     var title: String {
         return _title
@@ -24,16 +24,22 @@ class Idea {
         return _isSharing
     }
     
-    var ideaHeaders: [IdeaSection] {
-        return _ideaHeaders
+    var sections: [IdeaSection] {
+        get {
+            return _sections
+        }
+        set {
+            _sections = newValue
+        }
     }
     
     init(title: String, isSharing: Bool){
         self._title = title
         self._isSharing = isSharing
         self._userId = 1
-        self._ideaHeaders = [IdeaSection]()
+        self._sections = [IdeaSection]()
     }
+    
     
 //    func downloadDayDetail(completed: DownloadComplete) {
 //        

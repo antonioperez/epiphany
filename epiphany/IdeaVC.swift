@@ -8,7 +8,7 @@
 
 import UIKit
 
-class IdeaVC: UIViewController, UITableViewDelegate, UITableViewDataSource{
+class IdeaVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var ideasTableView: UITableView!
     @IBOutlet weak var ideaLbl: UILabel!
@@ -18,6 +18,13 @@ class IdeaVC: UIViewController, UITableViewDelegate, UITableViewDataSource{
     
     
     var ideaSections = [IdeaSection]()
+    var idea : Idea!
+    var transferIdea: Idea!
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        self.idea = transferIdea
+    }
    
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,16 +33,22 @@ class IdeaVC: UIViewController, UITableViewDelegate, UITableViewDataSource{
         ideasTableView.dataSource = self
         ideasTableView.tableFooterView = UIView()
         
+        updateUI()
         
-        let initIdeaSection = IdeaSection(header: "Pitch", order: 0, color: "green")
-        let marketIdeaSection = IdeaSection(header: "Market", order: 1, color: "brown")
-        let productIdeaSection = IdeaSection(header: "Product", order: 2, color: "yellow")
-        let modelIdeaSection = IdeaSection(header: "Financial", order: 3, color:  "orange")
-        let execIdeaSection = IdeaSection(header: "Execution", order: 4, color: "red")
         
-        self.ideaSections += [initIdeaSection, marketIdeaSection, productIdeaSection, modelIdeaSection, execIdeaSection]
     }
     
+    func updateUI() {
+        self.ideaLbl.text = idea?.title
+        self.createdLbl.text = "2016/23/23"
+        self.updatedLbl.text = " 5 Min ago"
+        self.ideaDescripField.text = "Hell World, building tech to new tech"
+        self.ideaSections = self.idea.sections
+        
+    }
+    
+
+    // MARK TABLE FUNCTIONS
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
     }
