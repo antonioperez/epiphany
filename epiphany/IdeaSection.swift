@@ -1,0 +1,39 @@
+//
+//  IdeaHeader.swift
+//  epiphany
+//
+//  Created by Antonio Perez on 4/12/16.
+//  Copyright © 2016 Antonio Perez. All rights reserved.
+//
+
+import Foundation
+
+class IdeaSection {
+    
+    private var _ideaId: Int
+    private var _header: String
+    private var _order: Int
+    private var _ideaDetails: [IdeaDetail]
+    private var _color: String
+    
+    var ideaId: Int  {
+        return _ideaId
+    }
+    
+    var header: String {
+        return _header
+    }
+    
+    var color: String {
+        return _color
+    }
+    
+    init(header: String, order: Int, color: String){
+        self._ideaId = 1
+        self._header = header
+        self._order = order
+        self._ideaDetails = [IdeaDetail]()
+        self._color = color
+    }
+
+}
