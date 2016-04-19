@@ -8,13 +8,15 @@
 
 import UIKit
 
-class ideaSearchVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class ideaSearchVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
 
     
-    @IBOutlet weak var ideaSearchbar: UISearchBar!
+    @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var ideasTableView: UITableView!
     
     var ideas = [Idea]()
+    var filteredIdeas = [Idea]()
+    var isInSearchMode = false
 
     
     override func viewDidLoad() {
@@ -23,19 +25,21 @@ class ideaSearchVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         self.ideasTableView.tableFooterView = UIView()
         self.ideasTableView.delegate = self
         self.ideasTableView.dataSource = self
+        self.searchBar.delegate = self
         
-        let idea1 = Idea(title: "Snapchat", isSharing: true)
+        let idea1 = Idea(title: "Snapchat", slogan: "SNAP SNAP SNAP", isSharing: true)
         let initIdeaSection = IdeaSection(header: "Pitch", order: 0, color: "green")
         let marketIdeaSection = IdeaSection(header: "Market", order: 1, color: "brown")
         let productIdeaSection = IdeaSection(header: "Product", order: 2, color: "yellow")
         let modelIdeaSection = IdeaSection(header: "Financial", order: 3, color:  "orange")
         let execIdeaSection = IdeaSection(header: "Execution", order: 4, color: "red")
         
-        idea1.sections += [initIdeaSection, marketIdeaSection, productIdeaSection, modelIdeaSection, execIdeaSection]
-        ideas += [idea1]
+        let idea2 = Idea(title: "Facebook", slogan: "THE GLOBAL NETWORK OF FACES!!!", isSharing: true)
         
-
-    
+        
+        idea1.sections += [initIdeaSection, marketIdeaSection, productIdeaSection, modelIdeaSection, execIdeaSection]
+        idea2.sections += [initIdeaSection, marketIdeaSection, productIdeaSection, modelIdeaSection, execIdeaSection]
+        ideas += [idea1, idea2]
     
     }
     
@@ -44,7 +48,14 @@ class ideaSearchVC: UIViewController, UITableViewDelegate, UITableViewDataSource
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         if let ideaCell = tableView.dequeueReusableCellWithIdentifier("IdeaTC") as? IdeaTC {
-            ideaCell.configureCell(ideas[indexPath.row])
+            
+            let idea : Idea!
+            if isInSearchMode {
+                idea = filteredIdeas[indexPath.row]
+            } else {
+                idea = ideas[indexPath.row]
+            }
+            ideaCell.configureCell(idea)
             return ideaCell
         }
         return IdeaTC()
@@ -53,6 +64,9 @@ class ideaSearchVC: UIViewController, UITableViewDelegate, UITableViewDataSource
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if isInSearchMode {
+            return filteredIdeas.count
+        }
         return ideas.count
     }
     
@@ -62,17 +76,38 @@ class ideaSearchVC: UIViewController, UITableViewDelegate, UITableViewDataSource
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
-        performSegueWithIdentifier("showIdeaOverview", sender: ideas[indexPath.row])
+        let idea = ideas[indexPath.row]
+        performSegueWithIdentifier("showIdeaOverview", sender: idea)
         
     }
     
-    // MARK SEGUE
+    //MARK Search functions
     
+    func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
+        
+        if self.searchBar.text == nil || searchBar.text == "" {
+            isInSearchMode = false
+            view.endEditing(true)
+            ideasTableView.reloadData()
+        } else {
+            isInSearchMode = true
+            let lower = searchBar.text!.lowercaseString
+            filteredIdeas = ideas.filter({$0.title.lowercaseString.rangeOfString(lower) != nil})
+            ideasTableView.reloadData()
+            
+        }
+    }
+    
+    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+        view.endEditing(true)
+    }
+    
+    // MARK SEGUE
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "showIdeaOverview" {
             if let ideaVC = segue.destinationViewController as? IdeaVC {
                 if let ideaData = sender as? Idea {
-                    ideaVC.transferIdea = ideaData
+                    ideaVC.idea = ideaData
                 }
                 
             }

@@ -19,13 +19,7 @@ class IdeaVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     var ideaSections = [IdeaSection]()
     var idea : Idea!
-    var transferIdea: Idea!
-    
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        self.idea = transferIdea
-    }
-   
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -40,10 +34,10 @@ class IdeaVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     func updateUI() {
         self.ideaLbl.text = idea?.title
-        self.createdLbl.text = "2016/23/23"
-        self.updatedLbl.text = " 5 Min ago"
-        self.ideaDescripField.text = "Hell World, building tech to new tech"
-        self.ideaSections = self.idea.sections
+        self.ideaDescripField.text = idea?.slogan
+        self.createdLbl.text = idea?.created
+        self.updatedLbl.text = "Updated: " + (idea?.modified)!
+        self.ideaSections = idea.sections
         
     }
     
