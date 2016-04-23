@@ -13,18 +13,13 @@ class Idea {
     
     private var _userId: Int
     private var _title: String
-    private var _slogan: String
     private var _isSharing: Bool
     private var _sections : [IdeaSection]
-    private var _created : String = ""
-    private var _modified : String = ""
+    private var _created : String
+    private var _modified : String
     
     var title: String {
         return _title
-    }
-    
-    var slogan : String {
-        return _slogan
     }
     
     var isSharing: Bool {
@@ -51,26 +46,28 @@ class Idea {
         }
     }
     
-    init(title: String, slogan: String, isSharing: Bool){
+    init(title: String, isSharing: Bool){
         self._title = title
         self._isSharing = isSharing
-        self._slogan = slogan
         self._userId = 1
         self._sections = [IdeaSection]()
+        self._created = ""
+        self._modified = ""
     
-        let convertDate = self.getCurrDate()
+        let convertDate = self.createUTC()
         self._created = convertDate
         self._modified = convertDate
     }
     
-    func getCurrDate() -> String {
+    func createUTC() -> String {
         let currentDate = NSDate()
         let dateFormatter = NSDateFormatter()
-        dateFormatter.locale = NSLocale.currentLocale()
-        return dateFormatter.stringFromDate(currentDate)
+        dateFormatter.dateFormat = "YYYY-MM-dd HH:MM:SS"
+        let currDate =  dateFormatter.stringFromDate(currentDate)
+        return currDate
     }
     
-    func getDateFrom(dateString: String, format:String) -> NSDate {
+    func getDateFromString(dateString: String, format:String) -> NSDate {
         
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = format

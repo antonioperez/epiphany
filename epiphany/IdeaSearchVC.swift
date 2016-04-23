@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ideaSearchVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
+class IdeaSearchVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
 
     
     @IBOutlet weak var searchBar: UISearchBar!
@@ -22,19 +22,24 @@ class ideaSearchVC: UIViewController, UITableViewDelegate, UITableViewDataSource
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        self.navigationController!.navigationBar.barTintColor = GREEN_COLOR
+        self.navigationController!.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
+        
+        
         self.ideasTableView.tableFooterView = UIView()
         self.ideasTableView.delegate = self
         self.ideasTableView.dataSource = self
         self.searchBar.delegate = self
         
-        let idea1 = Idea(title: "Snapchat", slogan: "SNAP SNAP SNAP", isSharing: true)
+        let idea1 = Idea(title: "Snapchat", isSharing: true)
         let initIdeaSection = IdeaSection(header: "Pitch", order: 0, color: "green")
         let marketIdeaSection = IdeaSection(header: "Market", order: 1, color: "brown")
         let productIdeaSection = IdeaSection(header: "Product", order: 2, color: "yellow")
         let modelIdeaSection = IdeaSection(header: "Financial", order: 3, color:  "orange")
         let execIdeaSection = IdeaSection(header: "Execution", order: 4, color: "red")
         
-        let idea2 = Idea(title: "Facebook", slogan: "THE GLOBAL NETWORK OF FACES!!!", isSharing: true)
+        let idea2 = Idea(title: "Facebook", isSharing: true)
         
         
         idea1.sections += [initIdeaSection, marketIdeaSection, productIdeaSection, modelIdeaSection, execIdeaSection]
@@ -105,9 +110,10 @@ class ideaSearchVC: UIViewController, UITableViewDelegate, UITableViewDataSource
     // MARK SEGUE
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "showIdeaOverview" {
-            if let ideaVC = segue.destinationViewController as? IdeaVC {
+            if let ideaVC = segue.destinationViewController as? IdeaOverviewVC {
                 if let ideaData = sender as? Idea {
                     ideaVC.idea = ideaData
+                    
                 }
                 
             }

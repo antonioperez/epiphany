@@ -28,6 +28,14 @@ class IdeaSection {
         return _color
     }
     
+    var details: [IdeaDetail] {
+        get {
+            return _ideaDetails
+        } set {
+            _ideaDetails = newValue
+        }
+    }
+        
     init(header: String, order: Int, color: String){
         self._ideaId = 1
         self._header = header
