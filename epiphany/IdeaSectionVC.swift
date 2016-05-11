@@ -48,9 +48,19 @@ class IdeaSectionVC : UIViewController, UITableViewDelegate, UITableViewDataSour
                 
     }
     
-    // MARK TABLE FUNCTIONS
+    //MARK ACTIONS
+    @IBAction func cancelButtonPressed(sender: AnyObject) {
+        navigationController?.popViewControllerAnimated(true)
+        
+    }
     
+ 
+    
+    // MARK TABLE FUNCTIONS
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+        let sectionDetail = sectionDetails[indexPath.row]
+        performSegueWithIdentifier("showDetailEditor", sender: sectionDetail)
         
     }
     
@@ -73,13 +83,18 @@ class IdeaSectionVC : UIViewController, UITableViewDelegate, UITableViewDataSour
         return 1
     }
     
-    //MARK ACTIONS
-    @IBAction func cancelButtonPressed(sender: AnyObject) {
-        navigationController?.popViewControllerAnimated(true)
+    //MARK: SEGUE
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
+        if segue.identifier == "showDetailEditor" {
+            if let detailVC = segue.destinationViewController as? DetailEditorVC {
+                if let sectionDetail = sender as? IdeaDetail {
+                    detailVC.ideaDetail = sectionDetail
+                    
+                }
+            }
+            
+        }
     }
-
-    @IBAction func saveButtonPressed(sender: AnyObject) {
-        navigationController?.popViewControllerAnimated(true)
-    }
+    
 }
