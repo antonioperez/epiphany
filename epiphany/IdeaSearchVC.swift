@@ -23,8 +23,8 @@ class IdeaSearchVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         super.viewDidLoad()
         
         
-        self.navigationController!.navigationBar.barTintColor = GREEN_COLOR
-        self.navigationController!.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
+        self.navigationController!.navigationBar.barTintColor = WHITE_COLOR
+        //self.navigationController!.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
         
         
         self.ideasTableView.tableFooterView = UIView()

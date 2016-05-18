@@ -18,16 +18,33 @@ class DetailEditorVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        updateUI()
 
     }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+    }
+    
+    
+    //MARK actions
 
 
     @IBAction func doneButtonPressed(sender: AnyObject) {
-        
-        
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
 
     @IBAction func imagePickerButton(sender: AnyObject) {
         
+    }
+    
+    //mark: functions
+    
+    func updateUI(){
+        
+        if let ideaDetails = self.ideaDetail {
+            self.detailTitle.text = ideaDetails.subTitle
+            self.detailContent.text = ideaDetails.content
+        }
     }
 }
