@@ -21,7 +21,11 @@ class IdeaSection {
     }
     
     var header: String {
-        return _header
+        get {
+            return _header
+        } set {
+            _header = newValue
+        }
     }
     
     var color: String {

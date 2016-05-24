@@ -30,6 +30,7 @@ class IdeaSearchVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         self.ideasTableView.tableFooterView = UIView()
         self.ideasTableView.delegate = self
         self.ideasTableView.dataSource = self
+
         self.searchBar.delegate = self
         
         let idea1 = Idea(title: "Snapchat", isSharing: true)
@@ -113,6 +114,7 @@ class IdeaSearchVC: UIViewController, UITableViewDelegate, UITableViewDataSource
             if let ideaVC = segue.destinationViewController as? IdeaOverviewVC {
                 if let ideaData = sender as? Idea {
                     ideaVC.idea = ideaData
+                    navigationItem.title = "Browse"
                     
                 }
                 

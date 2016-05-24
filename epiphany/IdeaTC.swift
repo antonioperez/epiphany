@@ -29,6 +29,8 @@ class IdeaTC: UITableViewCell {
         self.idea = idea
         self.ideaLbl.text = self.idea.title
         self.ideaSubTitleLbl.text = "Updated 6 min ago"
+        self.selectionStyle = .None
+        
     }
 
 

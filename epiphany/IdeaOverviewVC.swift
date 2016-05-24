@@ -38,7 +38,7 @@ class IdeaOverviewVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     func updateUI() {
         self.ideaLbl.text = idea!.title
         self.createdLbl.text = "Founded: " + idea!.created
-        self.updatedLbl.text = "Updated " + idea!.modified
+        self.updatedLbl.text = "Updated: " + idea!.modified
         
     }
     
@@ -56,7 +56,6 @@ class IdeaOverviewVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         if let ideaSectionCell = tableView.dequeueReusableCellWithIdentifier("IdeaSectionTC") as? IdeaSectionTC {
             
             ideaSectionCell.configureCell(ideaSections[indexPath.row])
-            
             return ideaSectionCell
             
         }
@@ -83,10 +82,13 @@ class IdeaOverviewVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         if segue.identifier == "showSectionOverview" {
             if let sectionVC = segue.destinationViewController as? IdeaSectionVC {
                 if let ideaSection = sender as? IdeaSection {
-                    sectionVC.ideaSection = ideaSection
                     
-                    // Make the Tab Bar Controller the root view controller
+                    navigationItem.title = idea!.title
+                    
+                    sectionVC.ideaSection = ideaSection
+                    sectionVC.ideaTitle = idea!.title
                     sectionVC.tabBarController?.delegate = self.tabBarController?.delegate
+                
                     
                 }
             }

@@ -13,6 +13,7 @@ class IdeaSectionVC : UIViewController, UITableViewDelegate, UITableViewDataSour
     
     var sectionDetails = [IdeaDetail]()
     var ideaSection: IdeaSection!
+    var ideaTitle = ""
     
     @IBOutlet weak var sectionDetailTableView: UITableView!
   
@@ -26,7 +27,8 @@ class IdeaSectionVC : UIViewController, UITableViewDelegate, UITableViewDataSour
         self.automaticallyAdjustsScrollViewInsets = false;
         
         
-        updateUI()
+        self.updateUI()
+        
         
         let ideaDetail = IdeaDetail(subTitle: "The Problem", content: "> Hello World \n> test", order: 0)
         self.sectionDetails += [ideaDetail]
@@ -37,15 +39,15 @@ class IdeaSectionVC : UIViewController, UITableViewDelegate, UITableViewDataSour
         super.viewWillAppear(animated)
         
         if let sectionDetails = ideaSection?.details {
-            
             self.sectionDetails += sectionDetails
         }
         
     }
     
     func updateUI(){
-        self.navigationController?.title = self.ideaSection.header
-                
+        
+        self.title = self.ideaSection.header
+      
     }
     
     //MARK ACTIONS

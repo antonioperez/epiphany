@@ -29,6 +29,7 @@ class IdeaSectionTC: UITableViewCell {
     func configureCell(ideaSection: IdeaSection){
         self.ideaSection = ideaSection
         self.ideaSectionLbl.text = self.ideaSection.header
+        self.selectionStyle = .None
         let cellColor = self.ideaSection.color.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()).uppercaseString
         
         if cellColor == "GREEN" {
