@@ -588,7 +588,7 @@
                                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                                 </textView>
-                                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="B5DBAE0C-635B-4190-AE13-63C2F06B04EE" translatesAutoresizingMaskIntoConstraints="NO" id="14R-Fx-7E2">
+                                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AB8D036E-A26C-48C8-B7D7-9B5357DD165F" translatesAutoresizingMaskIntoConstraints="NO" id="14R-Fx-7E2">
                                                                     <rect key="frame" x="560" y="0.0" width="24" height="76"/>
                                                                 </imageView>
                                                             </subviews>
@@ -628,7 +628,7 @@
                         <barButtonItem key="backBarButtonItem" title="Facebook" id="q0T-hp-giX"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="Xu9-QJ-EIc">
                             <connections>
-                                <segue destination="3xl-PD-8OA" kind="presentation" id="c0b-qc-632"/>
+                                <segue destination="3xl-PD-8OA" kind="presentation" identifier="addSectionDetail" id="c0b-qc-632"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -773,6 +773,7 @@
                     </view>
                     <connections>
                         <outlet property="addSectionLbl" destination="9bk-RJ-T4K" id="LKa-uA-sU1"/>
+                        <outlet property="helpText" destination="cSA-Wt-T3n" id="H7h-GY-8zh"/>
                         <outlet property="sectionTitle" destination="i1I-bA-51Q" id="WmJ-fG-Leg"/>
                     </connections>
                 </viewController>
@@ -901,7 +902,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="B5DBAE0C-635B-4190-AE13-63C2F06B04EE" width="24" height="24">
+        <image name="AB8D036E-A26C-48C8-B7D7-9B5357DD165F" width="24" height="24">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGPT5YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK4HCBMU
 GR4fIyQrLjE3OlUkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVw

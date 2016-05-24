@@ -56,8 +56,6 @@ class IdeaSectionVC : UIViewController, UITableViewDelegate, UITableViewDataSour
         
     }
     
- 
-    
     // MARK TABLE FUNCTIONS
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
@@ -96,7 +94,7 @@ class IdeaSectionVC : UIViewController, UITableViewDelegate, UITableViewDataSour
                 }
             }
             
-        }
+        } 
     }
     
 }
