@@ -56,16 +56,20 @@ class DetailEditorVC: UIViewController, UITextViewDelegate {
     
     //MARK: Keyboard functions
     
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
-        detailContent.resignFirstResponder()
-        detailContent.text! += ">"
-        return true
-    }
     
     func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
         
+        
+        
         if (text == "\n" ){
-            detailContent.text! += "\n>"
+
+            let oldPos = detailContent.beginningOfDocument
+            let newLine = "> "
+            detailContent.text! += newLine
+            
+            if let cursorLocation: UITextPosition = detailContent.positionFromPosition(oldPos, offset: (range.location + newLine.characters.count) ) {
+                detailContent.selectedTextRange = detailContent.textRangeFromPosition(cursorLocation, toPosition: cursorLocation)
+            }
         }
         
         
