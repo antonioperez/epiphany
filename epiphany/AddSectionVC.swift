@@ -15,7 +15,9 @@ class AddSectionVC: UIViewController {
     @IBOutlet weak var helpText: UITextView!
     
     
-    var sectionDetails = [IdeaDetail]()
+    
+    var ideaTitle = ""
+    var section : IdeaSection!
     
     
     override func viewDidLoad() {
@@ -25,16 +27,23 @@ class AddSectionVC: UIViewController {
     }
     
     func updateUI(){
+        
+        if let sect = self.section {
+                    
+            helpText.text = "Add a topic under the \(sect.header) section of the \(ideaTitle) idea!"
+            
+        }
 
         
     }
     
-    
     @IBAction func saveBtnPressed(sender: AnyObject) {
         
-        let ideaDetail = IdeaDetail(subTitle: "New", content: "", order: 2)
-        self.dismissViewControllerAnimated(true, completion: nil)
+        let ideaDetail = IdeaDetail(subTitle: "New", content: "fjdnfksj ", order: 2)
+        DataService.instance.ideas[0].sections[0].details.append(ideaDetail)
+        //NSNotificationCenter.defaultCenter().postNotificationName("load", object: nil)
         
+        self.dismissViewControllerAnimated(true, completion: nil)
         
     }
     
@@ -43,19 +52,4 @@ class AddSectionVC: UIViewController {
         
     }
     
-    
-    //MARK Segue
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        
-        if segue.identifier == "addSectionDetail" {
-            if let detailVC = segue.destinationViewController as? IdeaSectionVC {
-                if let ideaDetail = sender as? IdeaDetail {
-                    detailVC.sectionDetails.append(ideaDetail)
-                    
-                }
-            }
-        }
-    }
-
-
 }

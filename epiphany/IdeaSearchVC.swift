@@ -39,14 +39,17 @@ class IdeaSearchVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         let productIdeaSection = IdeaSection(header: "Product", order: 2, color: "yellow")
         let modelIdeaSection = IdeaSection(header: "Financial", order: 3, color:  "orange")
         let execIdeaSection = IdeaSection(header: "Execution", order: 4, color: "red")
-        
         let idea2 = Idea(title: "Facebook", isSharing: true)
         
         
         idea1.sections += [initIdeaSection, marketIdeaSection, productIdeaSection, modelIdeaSection, execIdeaSection]
         idea2.sections += [initIdeaSection, marketIdeaSection, productIdeaSection, modelIdeaSection, execIdeaSection]
-        ideas += [idea1, idea2]
-    
+        
+        let ideaDetail = IdeaDetail(subTitle: "The Problem", content: "> Hello World \n> test", order: 0)
+        idea1.sections[0].details = [ideaDetail]
+        
+        DataService.instance.ideas = [idea1, idea2]
+        ideas +=  DataService.instance.ideas
     }
     
     
@@ -66,7 +69,6 @@ class IdeaSearchVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         }
         return IdeaTC()
     
-        
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -100,7 +102,6 @@ class IdeaSearchVC: UIViewController, UITableViewDelegate, UITableViewDataSource
             let lower = searchBar.text!.lowercaseString
             filteredIdeas = ideas.filter({$0.title.lowercaseString.rangeOfString(lower) != nil})
             ideasTableView.reloadData()
-            
         }
     }
     
@@ -115,9 +116,7 @@ class IdeaSearchVC: UIViewController, UITableViewDelegate, UITableViewDataSource
                 if let ideaData = sender as? Idea {
                     ideaVC.idea = ideaData
                     navigationItem.title = "Browse"
-                    
                 }
-                
             }
         }
     }

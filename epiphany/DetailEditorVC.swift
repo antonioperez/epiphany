@@ -26,10 +26,7 @@ class DetailEditorVC: UIViewController {
         super.viewWillAppear(animated)
     }
     
-    
     //MARK actions
-
-
     @IBAction func doneButtonPressed(sender: AnyObject) {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
@@ -39,7 +36,6 @@ class DetailEditorVC: UIViewController {
     }
     
     //mark: functions
-    
     func updateUI(){
         
         if let ideaDetails = self.ideaDetail {
