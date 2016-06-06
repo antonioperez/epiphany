@@ -8,7 +8,7 @@
 
 import UIKit
 
-class DetailEditorVC: UIViewController {
+class DetailEditorVC: UIViewController, UITextViewDelegate {
     
     
     @IBOutlet weak var detailTitle: UILabel!
@@ -18,7 +18,17 @@ class DetailEditorVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        detailContent.delegate = self
+        
+        
         updateUI()
+        
+        let notificationCenter = NSNotificationCenter.defaultCenter()
+        notificationCenter.addObserver(self, selector: #selector(DetailEditorVC.adjustForKeyboard(_:)),
+                                             name: UIKeyboardWillHideNotification, object: nil)
+        
+        notificationCenter.addObserver(self, selector: #selector(DetailEditorVC.adjustForKeyboard(_:)),
+                                             name: UIKeyboardWillChangeFrameNotification, object: nil)
 
     }
     
@@ -42,5 +52,44 @@ class DetailEditorVC: UIViewController {
             self.detailTitle.text = ideaDetails.subTitle
             self.detailContent.text = ideaDetails.content
         }
+    }
+    
+    //MARK: Keyboard functions
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        detailContent.resignFirstResponder()
+        detailContent.text! += ">"
+        return true
+    }
+    
+    func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
+        
+        if (text == "\n" ){
+            detailContent.text! += "\n>"
+        }
+        
+        
+        return true
+    }
+    
+    
+    
+    func adjustForKeyboard(notification: NSNotification) {
+        let userInfo = notification.userInfo!
+        
+        let keyboardScreenEndFrame = (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue).CGRectValue()
+        let keyboardViewEndFrame = view.convertRect(keyboardScreenEndFrame, fromView: view.window)
+        
+        if notification.name == UIKeyboardWillHideNotification {
+            detailContent.contentInset = UIEdgeInsetsZero
+        } else {
+            detailContent.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: keyboardViewEndFrame.height, right: 0)
+        }
+        
+        detailContent.scrollIndicatorInsets = detailContent.contentInset
+        let selectRange = detailContent.selectedRange
+        detailContent.scrollRangeToVisible(selectRange)
+        
+        
     }
 }
