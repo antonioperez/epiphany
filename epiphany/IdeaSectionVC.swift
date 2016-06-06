@@ -24,30 +24,30 @@ class IdeaSectionVC : UIViewController, UITableViewDelegate, UITableViewDataSour
         self.sectionDetailTableView.delegate = self
         self.sectionDetailTableView.dataSource = self
         self.sectionDetailTableView.tableFooterView = UIView()
-        self.automaticallyAdjustsScrollViewInsets = false;
-        
+        self.automaticallyAdjustsScrollViewInsets = false
         
         self.updateUI()
+        //NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(IdeaSectionVC.reloadTable), name: "load", object: nil)
         
-        
-        let ideaDetail = IdeaDetail(subTitle: "The Problem", content: "> Hello World \n> test", order: 0)
-        self.sectionDetails += [ideaDetail]
-    
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
         if let sectionDetails = ideaSection?.details {
-            self.sectionDetails += sectionDetails
+            self.sectionDetails = sectionDetails
         }
         
+        self.sectionDetailTableView.reloadData()
     }
     
     func updateUI(){
-        
         self.title = self.ideaSection.header
       
+    }
+    
+    func reloadTable(notification : NSNotification) {
+        self.sectionDetailTableView.reloadData()
     }
     
     //MARK ACTIONS
@@ -93,8 +93,16 @@ class IdeaSectionVC : UIViewController, UITableViewDelegate, UITableViewDataSour
                     
                 }
             }
-            
-        } 
+        }
+
+        if segue.identifier == "addSectionDetail" {
+            if let addSectionVC = segue.destinationViewController as? AddSectionVC {
+                addSectionVC.section = self.ideaSection
+                addSectionVC.ideaTitle = ideaTitle
+            }
+        }
+        
+        
     }
     
 }
