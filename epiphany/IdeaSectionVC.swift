@@ -90,6 +90,7 @@ class IdeaSectionVC : UIViewController, UITableViewDelegate, UITableViewDataSour
             if let detailVC = segue.destinationViewController as? DetailEditorVC {
                 if let sectionDetail = sender as? IdeaDetail {
                     detailVC.ideaDetail = sectionDetail
+                    detailVC.ideaTitle = ideaTitle
                     
                 }
             }

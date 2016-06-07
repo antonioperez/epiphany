@@ -597,7 +597,7 @@
                                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                                 </textView>
-                                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="A68D5D5E-2194-4D31-BF0B-6AA2627DB779" translatesAutoresizingMaskIntoConstraints="NO" id="14R-Fx-7E2">
+                                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="7A3177FA-491E-4D6E-9DB0-D17B1EB132E5" translatesAutoresizingMaskIntoConstraints="NO" id="14R-Fx-7E2">
                                                                     <rect key="frame" x="560" y="0.0" width="24" height="76"/>
                                                                 </imageView>
                                                             </subviews>
@@ -739,7 +739,7 @@
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="D77-pG-Szk">
                                                         <rect key="frame" x="0.0" y="80" width="584" height="420"/>
                                                         <subviews>
-                                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Add a topic under the Product section!" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="cSA-Wt-T3n">
+                                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Add a topic under the Product section!" translatesAutoresizingMaskIntoConstraints="NO" id="cSA-Wt-T3n">
                                                                 <rect key="frame" x="0.0" y="0.0" width="584" height="420"/>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -802,68 +802,95 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c4G-6f-Xhp">
-                                <rect key="frame" x="0.0" y="20" width="600" height="64"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="NZ6-np-zxe">
+                                <rect key="frame" x="0.0" y="20" width="600" height="580"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="MBu-c8-3qi">
-                                        <rect key="frame" x="8" y="8" width="584" height="48"/>
+                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="c4G-6f-Xhp">
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="64"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yte-EF-Bzo">
-                                                <rect key="frame" x="0.0" y="0.0" width="195" height="48"/>
+                                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="MBu-c8-3qi">
+                                                <rect key="frame" x="8" y="8" width="584" height="48"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yte-EF-Bzo">
+                                                        <rect key="frame" x="0.0" y="0.0" width="195" height="48"/>
+                                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
+                                                        <state key="normal" title="Add Photo"/>
+                                                        <connections>
+                                                            <action selector="imagePickerButton:" destination="0YT-Le-Urv" eventType="touchUpInside" id="vWq-Ft-2q9"/>
+                                                        </connections>
+                                                    </button>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Product" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="61k-VL-LQt">
+                                                        <rect key="frame" x="195" y="0.0" width="195" height="48"/>
+                                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
+                                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aeI-6R-Aao">
+                                                        <rect key="frame" x="390" y="0.0" width="195" height="48"/>
+                                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
+                                                        <state key="normal" title="Done"/>
+                                                        <connections>
+                                                            <action selector="doneButtonPressed:" destination="0YT-Le-Urv" eventType="touchUpInside" id="LwU-9W-JLx"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstItem="MBu-c8-3qi" firstAttribute="leading" secondItem="c4G-6f-Xhp" secondAttribute="leadingMargin" id="1qF-dH-kTh"/>
+                                            <constraint firstAttribute="trailingMargin" secondItem="MBu-c8-3qi" secondAttribute="trailing" id="OWQ-C2-UjS"/>
+                                            <constraint firstAttribute="height" constant="64" id="QhK-BU-MQT"/>
+                                            <constraint firstItem="MBu-c8-3qi" firstAttribute="top" secondItem="c4G-6f-Xhp" secondAttribute="topMargin" id="ZFM-TU-nfk"/>
+                                            <constraint firstAttribute="bottomMargin" secondItem="MBu-c8-3qi" secondAttribute="bottom" id="fWE-Na-kDW"/>
+                                        </constraints>
+                                    </view>
+                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cf1-jW-cl2">
+                                        <rect key="frame" x="0.0" y="67" width="600" height="1"/>
+                                        <color key="backgroundColor" red="0.95294117647058818" green="0.95294117647058818" blue="0.95294117647058818" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="1" id="8Hq-L6-oHh"/>
+                                        </constraints>
+                                    </view>
+                                    <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="mgq-PG-YBa">
+                                        <rect key="frame" x="10" y="71" width="580" height="509"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c1z-ad-ILg">
+                                                <rect key="frame" x="0.0" y="0.0" width="580" height="10"/>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
-                                                <state key="normal" title="Add Photo"/>
-                                                <connections>
-                                                    <action selector="imagePickerButton:" destination="0YT-Le-Urv" eventType="touchUpInside" id="vWq-Ft-2q9"/>
-                                                </connections>
-                                            </button>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Product" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="61k-VL-LQt">
-                                                <rect key="frame" x="195" y="0.0" width="195" height="48"/>
-                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
-                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aeI-6R-Aao">
-                                                <rect key="frame" x="390" y="0.0" width="195" height="48"/>
-                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
-                                                <state key="normal" title="Done"/>
-                                                <connections>
-                                                    <action selector="doneButtonPressed:" destination="0YT-Le-Urv" eventType="touchUpInside" id="LwU-9W-JLx"/>
-                                                </connections>
-                                            </button>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="46d-yQ-2NJ">
+                                                <rect key="frame" x="0.0" y="10" width="580" height="499"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <string key="text">$ Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod $ \n$\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud $exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in $reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint $occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. $Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                            </textView>
                                         </subviews>
                                     </stackView>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstItem="MBu-c8-3qi" firstAttribute="leading" secondItem="c4G-6f-Xhp" secondAttribute="leadingMargin" id="1qF-dH-kTh"/>
-                                    <constraint firstAttribute="trailingMargin" secondItem="MBu-c8-3qi" secondAttribute="trailing" id="OWQ-C2-UjS"/>
-                                    <constraint firstAttribute="height" constant="64" id="QhK-BU-MQT"/>
-                                    <constraint firstItem="MBu-c8-3qi" firstAttribute="top" secondItem="c4G-6f-Xhp" secondAttribute="topMargin" id="ZFM-TU-nfk"/>
-                                    <constraint firstAttribute="bottomMargin" secondItem="MBu-c8-3qi" secondAttribute="bottom" id="fWE-Na-kDW"/>
+                                    <constraint firstItem="cf1-jW-cl2" firstAttribute="leading" secondItem="NZ6-np-zxe" secondAttribute="leading" id="1P0-2D-Zhm"/>
+                                    <constraint firstItem="mgq-PG-YBa" firstAttribute="leading" secondItem="NZ6-np-zxe" secondAttribute="leading" constant="10" id="BVO-lh-uSg"/>
+                                    <constraint firstAttribute="trailing" secondItem="cf1-jW-cl2" secondAttribute="trailing" id="lNg-s9-tIn"/>
+                                    <constraint firstAttribute="trailing" secondItem="mgq-PG-YBa" secondAttribute="trailing" constant="10" id="w3i-rg-nQs"/>
                                 </constraints>
-                            </view>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="46d-yQ-2NJ">
-                                <rect key="frame" x="20" y="84" width="560" height="516"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <string key="text">$ Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod $ \n$\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud $exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in $reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint $occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. $Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailingMargin" secondItem="46d-yQ-2NJ" secondAttribute="trailing" id="4nB-Wr-WKH"/>
-                            <constraint firstItem="fRP-n1-V0V" firstAttribute="top" secondItem="46d-yQ-2NJ" secondAttribute="bottom" id="QQj-Bc-60b"/>
-                            <constraint firstItem="46d-yQ-2NJ" firstAttribute="top" secondItem="c4G-6f-Xhp" secondAttribute="bottom" id="S8m-Y8-ful"/>
-                            <constraint firstAttribute="trailing" secondItem="c4G-6f-Xhp" secondAttribute="trailing" id="VM6-Nt-MPf"/>
-                            <constraint firstItem="46d-yQ-2NJ" firstAttribute="leading" secondItem="Z7U-sv-w8h" secondAttribute="leadingMargin" id="fU1-4P-WqT"/>
-                            <constraint firstItem="c4G-6f-Xhp" firstAttribute="top" secondItem="Eaj-y7-wLX" secondAttribute="bottom" id="h0X-c0-4I4"/>
-                            <constraint firstItem="c4G-6f-Xhp" firstAttribute="leading" secondItem="Z7U-sv-w8h" secondAttribute="leading" id="u94-hv-hDS"/>
+                            <constraint firstItem="NZ6-np-zxe" firstAttribute="centerX" secondItem="Z7U-sv-w8h" secondAttribute="centerX" id="O7K-Hg-vwj"/>
+                            <constraint firstItem="NZ6-np-zxe" firstAttribute="top" secondItem="Eaj-y7-wLX" secondAttribute="bottom" id="Q7p-xF-EeV"/>
+                            <constraint firstAttribute="bottom" secondItem="NZ6-np-zxe" secondAttribute="bottom" id="pON-vp-Hqq"/>
+                            <constraint firstItem="NZ6-np-zxe" firstAttribute="leading" secondItem="Z7U-sv-w8h" secondAttribute="leading" id="sn4-KU-fmH"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="detailContent" destination="46d-yQ-2NJ" id="I9U-3Y-jHk"/>
                         <outlet property="detailTitle" destination="61k-VL-LQt" id="sa7-IS-wq8"/>
+                        <outlet property="helpTxt" destination="c1z-ad-ILg" id="srB-0I-oEp"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nAN-RH-dPY" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1094,7 +1121,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="A68D5D5E-2194-4D31-BF0B-6AA2627DB779" width="24" height="24">
+        <image name="7A3177FA-491E-4D6E-9DB0-D17B1EB132E5" width="24" height="24">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGPT5YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK4HCBMU
 GR4fIyQrLjE3OlUkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVw

@@ -13,13 +13,14 @@ class DetailEditorVC: UIViewController, UITextViewDelegate {
     
     @IBOutlet weak var detailTitle: UILabel!
     @IBOutlet weak var detailContent: UITextView!
+    @IBOutlet weak var helpTxt: UILabel!
     
+    var ideaTitle = ""
     var ideaDetail : IdeaDetail!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         detailContent.delegate = self
-        
         
         updateUI()
         
@@ -51,16 +52,14 @@ class DetailEditorVC: UIViewController, UITextViewDelegate {
         if let ideaDetails = self.ideaDetail {
             self.detailTitle.text = ideaDetails.subTitle
             self.detailContent.text = ideaDetails.content
+            self.helpTxt.text = "Editing \(ideaDetails.subTitle) of \(ideaTitle)"
         }
     }
     
     //MARK: Keyboard functions
-    
-    
     func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
         
         if (text == "\n" ){
-
             let newLine = "\n> "
             let oldPos = detailContent.beginningOfDocument
             detailContent.text! += newLine
@@ -71,13 +70,7 @@ class DetailEditorVC: UIViewController, UITextViewDelegate {
         }
         return true
     }
-    
 
-    
-    
-    
-    
-    
     func adjustForKeyboard(notification: NSNotification) {
         let userInfo = notification.userInfo!
         
@@ -93,7 +86,6 @@ class DetailEditorVC: UIViewController, UITextViewDelegate {
         detailContent.scrollIndicatorInsets = detailContent.contentInset
         let selectRange = detailContent.selectedRange
         detailContent.scrollRangeToVisible(selectRange)
-        
-        
+    
     }
 }
