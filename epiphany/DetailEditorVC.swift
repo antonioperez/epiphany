@@ -59,22 +59,22 @@ class DetailEditorVC: UIViewController, UITextViewDelegate {
     
     func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
         
-        
-        
         if (text == "\n" ){
 
+            let newLine = "\n> "
             let oldPos = detailContent.beginningOfDocument
-            let newLine = "> "
             detailContent.text! += newLine
-            
-            if let cursorLocation: UITextPosition = detailContent.positionFromPosition(oldPos, offset: (range.location + newLine.characters.count) ) {
+            if let cursorLocation: UITextPosition = detailContent.positionFromPosition(oldPos, offset: (range.location + newLine.characters.count)) {
                 detailContent.selectedTextRange = detailContent.textRangeFromPosition(cursorLocation, toPosition: cursorLocation)
             }
+            return false
         }
-        
-        
         return true
     }
+    
+
+    
+    
     
     
     
