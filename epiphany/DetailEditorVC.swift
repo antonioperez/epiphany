@@ -52,7 +52,7 @@ class DetailEditorVC: UIViewController, UITextViewDelegate {
         if let ideaDetails = self.ideaDetail {
             self.detailTitle.text = ideaDetails.subTitle
             self.detailContent.text = ideaDetails.content
-            self.helpTxt.text = "Editing \(ideaDetails.subTitle) of \(ideaTitle)"
+            self.helpTxt.text = "Editing \(ideaTitle)"
         }
     }
     

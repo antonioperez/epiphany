@@ -386,7 +386,14 @@
                     <view key="view" contentMode="scaleToFill" id="UEx-Mq-u1q">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.61960784310000006" green="0.5568627451" blue="0.0039215686269999999" alpha="0.68216594829999999" colorSpace="calibratedRGB"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vsY-0q-E3o">
+                                <rect key="frame" x="20" y="72" width="560" height="27"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                     </view>
                     <tabBarItem key="tabBarItem" title="Add" id="YQU-3e-264"/>
                 </viewController>
@@ -597,7 +604,7 @@
                                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                                 </textView>
-                                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="7A3177FA-491E-4D6E-9DB0-D17B1EB132E5" translatesAutoresizingMaskIntoConstraints="NO" id="14R-Fx-7E2">
+                                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BE2C706E-BE6C-44DC-A7B7-1C3571FC8A8F" translatesAutoresizingMaskIntoConstraints="NO" id="14R-Fx-7E2">
                                                                     <rect key="frame" x="560" y="0.0" width="24" height="76"/>
                                                                 </imageView>
                                                             </subviews>
@@ -724,7 +731,7 @@
                                                                 </constraints>
                                                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                                <nil key="highlightedColor"/>
+                                                                <color key="highlightedColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                             </label>
                                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="i1I-bA-51Q">
                                                                 <rect key="frame" x="0.0" y="30" width="584" height="40"/>
@@ -845,24 +852,27 @@
                                             <constraint firstAttribute="bottomMargin" secondItem="MBu-c8-3qi" secondAttribute="bottom" id="fWE-Na-kDW"/>
                                         </constraints>
                                     </view>
-                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cf1-jW-cl2">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cf1-jW-cl2">
                                         <rect key="frame" x="0.0" y="67" width="600" height="1"/>
                                         <color key="backgroundColor" red="0.95294117647058818" green="0.95294117647058818" blue="0.95294117647058818" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="1" id="8Hq-L6-oHh"/>
                                         </constraints>
                                     </view>
-                                    <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="mgq-PG-YBa">
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="mgq-PG-YBa">
                                         <rect key="frame" x="10" y="71" width="580" height="509"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c1z-ad-ILg">
-                                                <rect key="frame" x="0.0" y="0.0" width="580" height="10"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c1z-ad-ILg">
+                                                <rect key="frame" x="0.0" y="0.0" width="580" height="20"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="20" id="9AG-6U-4AA"/>
+                                                </constraints>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
                                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="46d-yQ-2NJ">
-                                                <rect key="frame" x="0.0" y="10" width="580" height="499"/>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="46d-yQ-2NJ">
+                                                <rect key="frame" x="0.0" y="20" width="580" height="489"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <string key="text">$ Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod $ \n$\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud $exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in $reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint $occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. $Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
@@ -1121,7 +1131,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="7A3177FA-491E-4D6E-9DB0-D17B1EB132E5" width="24" height="24">
+        <image name="BE2C706E-BE6C-44DC-A7B7-1C3571FC8A8F" width="24" height="24">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGPT5YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK4HCBMU
 GR4fIyQrLjE3OlUkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVw
