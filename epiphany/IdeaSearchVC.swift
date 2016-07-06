@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class IdeaSearchVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
 
@@ -24,34 +25,46 @@ class IdeaSearchVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         
         
         self.navigationController!.navigationBar.barTintColor = WHITE_COLOR
-        //self.navigationController!.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
-        
         
         self.ideasTableView.tableFooterView = UIView()
         self.ideasTableView.delegate = self
         self.ideasTableView.dataSource = self
-
         self.searchBar.delegate = self
-        
-        let idea1 = Idea(title: "Snapchat", isSharing: true)
-        let initIdeaSection = IdeaSection(header: "Pitch", order: 0, color: "green")
-        let marketIdeaSection = IdeaSection(header: "Market", order: 1, color: "brown")
-        let productIdeaSection = IdeaSection(header: "Product", order: 2, color: "yellow")
-        let modelIdeaSection = IdeaSection(header: "Financial", order: 3, color:  "orange")
-        let execIdeaSection = IdeaSection(header: "Execution", order: 4, color: "red")
-        let idea2 = Idea(title: "Facebook", isSharing: true)
-        
-        
-        idea1.sections += [initIdeaSection, marketIdeaSection, productIdeaSection, modelIdeaSection, execIdeaSection]
-        idea2.sections += [initIdeaSection, marketIdeaSection, productIdeaSection, modelIdeaSection, execIdeaSection]
-        
-        let ideaDetail = IdeaDetail(subTitle: "The Problem", content: "> Hello World \n> test", order: 0)
-        idea1.sections[0].details = [ideaDetail]
-        
-        DataService.instance.ideas = [idea1, idea2]
-        ideas +=  DataService.instance.ideas
-    }
     
+        DataService.instance.REF_IDEAS.observeEventType(.Value, withBlock: { snapshot in
+
+            if let snapshots = snapshot.children.allObjects as? [FIRDataSnapshot] {
+                for snap in snapshots {
+                    if let ideaDic = snap.value as? Dictionary<String, AnyObject> {
+                        let key = snap.key
+                        let ideas = Idea(ideaKey: key, dictionary: ideaDic)
+                        
+                        self.ideas.append(ideas)
+                    }
+                }
+                
+            }
+            self.ideasTableView.reloadData()
+        })
+        
+        
+//        let idea1 = Idea(title: "Snapchat", isSharing: true)
+//        let initIdeaSection = IdeaSection(header: "Pitch", order: 0, color: "green")
+//        let marketIdeaSection = IdeaSection(header: "Market", order: 1, color: "brown")
+//        let productIdeaSection = IdeaSection(header: "Product", order: 2, color: "yellow")
+//        let modelIdeaSection = IdeaSection(header: "Financial", order: 3, color:  "orange")
+//        let execIdeaSection = IdeaSection(header: "Execution", order: 4, color: "red")
+//        let idea2 = Idea(title: "Facebook", isSharing: true)
+//        
+//        idea1.sections = [initIdeaSection, marketIdeaSection, productIdeaSection, modelIdeaSection, execIdeaSection]
+//        idea2.sections = [initIdeaSection, marketIdeaSection, productIdeaSection, modelIdeaSection, execIdeaSection]
+//        
+//        let ideaDetail = IdeaDetail(subTitle: "The Problem", content: "> Hello World \n> test", order: 0)
+//        idea1.sections![0].details = [ideaDetail]
+        
+        //DataService.instance.ideas = [idea1, idea2]
+        //ideas +=  DataService.instance.ideas
+    }
     
     // MARK TABLE FUNCTIONS
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {

@@ -27,12 +27,15 @@ class IdeaOverviewVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         ideasTableView.tableFooterView = UIView()
         updateUI()
         
-        
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        self.ideaSections = idea!.sections
+        
+        if let ideaSections = idea.sections {
+            self.ideaSections = ideaSections
+        }
+    
     }
     
     func updateUI() {

@@ -7,30 +7,41 @@
 //
 
 import Foundation
-
+import Firebase
 
 class Idea {
     
-    private var _userId: Int
-    private var _title: String
-    private var _isSharing: Bool
-    private var _sections : [IdeaSection]
-    private var _created : String
-    private var _modified : String
+    private var _userId: Int!
+    private var _title: String!
+    private var _isSharing: Bool!
+    private var _sections : [IdeaSection]?
+    private var _created : String!
+    private var _modified : String!
     
-    var title: String {
+    private var _ideaRef: FIRDatabaseReference!
+    private var _ideaKey: String!
+    
+    var ideaKey: String! {
+        return _ideaKey
+    }
+    
+    var ideaRef: FIRDatabaseReference! {
+        return _ideaRef
+    }
+    
+    var title: String! {
         return _title
     }
     
-    var isSharing: Bool {
+    var isSharing: Bool! {
         return _isSharing
     }
     
-    var created: String {
+    var created: String! {
         return _created
     }
     
-    var modified: String {
+    var modified: String! {
         get {
             return _modified
         } set {
@@ -38,7 +49,7 @@ class Idea {
         }
     }
     
-    var sections: [IdeaSection] {
+    var sections: [IdeaSection]? {
         get {
             return _sections
         } set {
@@ -57,7 +68,43 @@ class Idea {
         let convertDate = self.createUTC()
         self._created = convertDate
         self._modified = convertDate
+
     }
+    
+    init(ideaKey: String, dictionary: [String:AnyObject]){
+        self._ideaKey = ideaKey
+        self._userId = 1
+        if let title = dictionary["title"] as? String {
+            self._title = title
+        }
+        
+        if let isSharing = dictionary["isSharing"] as? Bool {
+            self._isSharing = isSharing
+        }
+        
+        if let sections = dictionary["sections"] as? [IdeaSection] {
+            self._sections = sections
+        }
+
+        let convertDate = self.createUTC()
+        self._created = convertDate
+        self._modified = convertDate
+        
+        self._ideaRef = DataService.instance.REF_IDEAS.child(self._ideaKey)
+    }
+    
+    
+    func update(title: String, sections: [IdeaSection]){
+        self._title = title
+        self._sections = sections
+        let convertDate = self.createUTC()
+        self._modified = convertDate
+        
+        _ideaRef.child("sections").setValue(sections)
+        _ideaRef.child("title").setValue("title")
+        
+    }
+    
     
     func createUTC() -> String {
         let currentDate = NSDate()
@@ -83,10 +130,5 @@ class Idea {
         let interval = date2.timeIntervalSinceDate(date1)
         return dateComponentsFormatter.stringFromTimeInterval(interval)!
     }
-    
-//    func downloadDayDetail(completed: DownloadComplete) {
-//        
-//        completed()
-//    }
     
 }

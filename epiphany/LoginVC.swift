@@ -10,8 +10,11 @@
 //F4511E
 
 import UIKit
+import Firebase
 
-class Login: UIViewController {
+
+class LoginVC: UIViewController {
+    
     
     @IBOutlet weak var emailField : UITextField!
     @IBOutlet weak var passwordField: UITextField!
@@ -24,23 +27,36 @@ class Login: UIViewController {
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
-       // if NSUserDefaults.standardUserDefaults().valueForKey(KEY_UID) != nil {
-             //self.performSegueWithIdentifier(SEGUE_LOGGED_IN, sender: nil)
-        //}
-    }
-    
-
-
-    @IBAction func attemptedLogin(sender: UIButton!) {
-        
-        if let email = emailField.text where email != "", let pwd = passwordField.text where pwd != "" {
-
-            
-        } else {
-            
-            showErrorAlert(self, title: "Login failed", msg: "You must enter a valid email and password")
+        if NSUserDefaults.standardUserDefaults().valueForKey(KEY_UID) != nil {
+             self.performSegueWithIdentifier("login", sender: nil)
         }
     }
     
+    @IBAction func attemptedLogin(sender: AnyObject!) {
+        
+        if let email = emailField.text where email != "", let pwd = passwordField.text where pwd != "" {
+           FIRAuth.auth()?.signInWithEmail(email, password: pwd) { user, error in
+            
+                guard let user = user else {
+                    
+                    if error?.code == STATUS_ACCOUNT_NONEXIST {
+                        showErrorAlert(self, title: "Login failed", msg: ERROR_ACCOUNT_NONEXIST)
+                    } else {
+                        showErrorAlert(self, title: "Login failed", msg: ERROR_LOGIN)
+                    }
+                    
+                    return;
+                }
+
+                let userData = ["provider": "email"]
+                DataService.instance.createFirebaseUser(user.uid, user: userData)
+                NSUserDefaults.standardUserDefaults().setValue(user.uid, forKey: KEY_UID)
+                self.performSegueWithIdentifier("login", sender: nil)
+            }
+        } else {
+            showErrorAlert(self, title: "Login failed", msg: ERROR_LOGIN)
+        }
+    }
+
 }
 

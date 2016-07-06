@@ -7,21 +7,21 @@
 	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
 	<string>ca-app-pub-3940256099942544/4411468910</string>
 	<key>CLIENT_ID</key>
-	<string>384306808027-vptojmllj1e4nqom692aufcdfcglppjo.apps.googleusercontent.com</string>
+	<string>886075660680-spmpea0a305pn9q9v45mjuo4ou9k114p.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.384306808027-vptojmllj1e4nqom692aufcdfcglppjo</string>
+	<string>com.googleusercontent.apps.886075660680-spmpea0a305pn9q9v45mjuo4ou9k114p</string>
 	<key>API_KEY</key>
-	<string>AIzaSyC21VZk4RCtgroVb0wVdWBtwgDTO2ejzew</string>
+	<string>AIzaSyB5rafpA-nTxi50PuTY5-Y5Zd8NeVRsxX8</string>
 	<key>GCM_SENDER_ID</key>
-	<string>384306808027</string>
+	<string>886075660680</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
 	<string>perezprogramming.epiphany</string>
 	<key>PROJECT_ID</key>
-	<string>epiphany-c2043</string>
+	<string>epiphany-21a42</string>
 	<key>STORAGE_BUCKET</key>
-	<string>epiphany-c2043.appspot.com</string>
+	<string>epiphany-21a42.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<true/>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -33,8 +33,8 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true/>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:384306808027:ios:0251d639fdbdad9e</string>
+	<string>1:886075660680:ios:0251d639fdbdad9e</string>
 	<key>DATABASE_URL</key>
-	<string>https://epiphany-c2043.firebaseio.com</string>
+	<string>https://epiphany-21a42.firebaseio.com</string>
 </dict>
 </plist>

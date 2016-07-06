@@ -6,7 +6,11 @@ target 'epiphany' do
   use_frameworks!
 
   # Pods for epiphany
-  pod 'Firebase'
+  pod 'AlamofireSwiftyJSON'
+  pod 'Firebase/Core'
+  pod 'Firebase/Auth'
+  pod 'Firebase/Database' 
+
   target 'epiphanyTests' do
     inherit! :search_paths
     # Pods for testing
