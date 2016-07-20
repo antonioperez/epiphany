@@ -14,7 +14,6 @@ class Idea {
     private var _userId: Int!
     private var _title: String!
     private var _isSharing: Bool!
-    private var _sections : [IdeaSection]?
     private var _created : String!
     private var _modified : String!
     
@@ -49,19 +48,12 @@ class Idea {
         }
     }
     
-    var sections: [IdeaSection]? {
-        get {
-            return _sections
-        } set {
-            _sections = newValue
-        }
-    }
+    var sections = [IdeaSection]()
     
     init(title: String, isSharing: Bool){
         self._title = title
         self._isSharing = isSharing
         self._userId = 1
-        self._sections = [IdeaSection]()
         self._created = ""
         self._modified = ""
     
@@ -82,8 +74,16 @@ class Idea {
             self._isSharing = isSharing
         }
         
-        if let sections = dictionary["sections"] as? [IdeaSection] {
-            self._sections = sections
+        if let sections = dictionary["sections"] as? [String:AnyObject] {
+            
+            let count = sections.count-1
+            if count >= 0 {
+                for (id, section) in sections {
+                    
+                    let sect = IdeaSection(id: id, dictionary: section as! [String : AnyObject])
+                    self.sections.append(sect)
+                }
+            }
         }
 
         let convertDate = self.createUTC()
@@ -96,7 +96,7 @@ class Idea {
     
     func update(title: String, sections: [IdeaSection]){
         self._title = title
-        self._sections = sections
+        self.sections = sections
         let convertDate = self.createUTC()
         self._modified = convertDate
         
@@ -104,7 +104,6 @@ class Idea {
         _ideaRef.child("title").setValue("title")
         
     }
-    
     
     func createUTC() -> String {
         let currentDate = NSDate()

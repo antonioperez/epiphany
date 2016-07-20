@@ -10,7 +10,6 @@ import UIKit
 import Firebase
 
 class IdeaSearchVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
-
     
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var ideasTableView: UITableView!
@@ -18,12 +17,9 @@ class IdeaSearchVC: UIViewController, UITableViewDelegate, UITableViewDataSource
     var ideas = [Idea]()
     var filteredIdeas = [Idea]()
     var isInSearchMode = false
-
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
         self.navigationController!.navigationBar.barTintColor = WHITE_COLOR
         
         self.ideasTableView.tableFooterView = UIView()
@@ -38,7 +34,6 @@ class IdeaSearchVC: UIViewController, UITableViewDelegate, UITableViewDataSource
                     if let ideaDic = snap.value as? Dictionary<String, AnyObject> {
                         let key = snap.key
                         let ideas = Idea(ideaKey: key, dictionary: ideaDic)
-                        
                         self.ideas.append(ideas)
                     }
                 }
@@ -46,7 +41,6 @@ class IdeaSearchVC: UIViewController, UITableViewDelegate, UITableViewDataSource
             }
             self.ideasTableView.reloadData()
         })
-        
         
 //        let idea1 = Idea(title: "Snapchat", isSharing: true)
 //        let initIdeaSection = IdeaSection(header: "Pitch", order: 0, color: "green")
@@ -64,6 +58,7 @@ class IdeaSearchVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         
         //DataService.instance.ideas = [idea1, idea2]
         //ideas +=  DataService.instance.ideas
+        
     }
     
     // MARK TABLE FUNCTIONS
@@ -97,13 +92,12 @@ class IdeaSearchVC: UIViewController, UITableViewDelegate, UITableViewDataSource
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
-        let idea = ideas[indexPath.row]
+        let idea = ideas[indexPath.row]        
         performSegueWithIdentifier("showIdeaOverview", sender: idea)
         
     }
     
     //MARK Search functions
-    
     func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
         
         if self.searchBar.text == nil || searchBar.text == "" {

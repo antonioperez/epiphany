@@ -30,7 +30,7 @@ class IdeaSectionTC: UITableViewCell {
         self.ideaSection = ideaSection
         self.ideaSectionLbl.text = self.ideaSection.header
         self.selectionStyle = .None
-        let cellColor = self.ideaSection.color.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()).uppercaseString
+        let cellColor = self.ideaSection.color!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()).uppercaseString
         
         if cellColor == "GREEN" {
             self.backgroundColor = GREEN_COLOR

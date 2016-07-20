@@ -26,6 +26,8 @@ class IdeaSectionVC : UIViewController, UITableViewDelegate, UITableViewDataSour
         self.sectionDetailTableView.tableFooterView = UIView()
         self.automaticallyAdjustsScrollViewInsets = false
         
+        
+        self.sectionDetails = ideaSection.ideaDetails
         self.updateUI()
         //NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(IdeaSectionVC.reloadTable), name: "load", object: nil)
         
@@ -33,11 +35,6 @@ class IdeaSectionVC : UIViewController, UITableViewDelegate, UITableViewDataSour
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        
-        if let sectionDetails = ideaSection?.details {
-            self.sectionDetails = sectionDetails
-        }
-        
         self.sectionDetailTableView.reloadData()
     }
     

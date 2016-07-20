@@ -39,7 +39,7 @@ class AddSectionVC: UIViewController {
     
     @IBAction func saveBtnPressed(sender: AnyObject) {
         
-        let ideaDetail = IdeaDetail(subTitle: "New", content: "fjdnfksj ", order: 2)
+        let ideaDetail = IdeaDetail(id:"4322342",subTitle: "New", content: "fjdnfksj ", order: 2)
         //DataService.instance.ideas[0].sections[0].details.append(ideaDetail)
         //NSNotificationCenter.defaultCenter().postNotificationName("load", object: nil)
         
